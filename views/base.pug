@@ -1,0 +1,37 @@
+
+
+html 
+    head
+        block head
+            meta(charset="UTF-8")
+            meta(name="viewport" content="width=device-width, initial-scale=1.0" )
+            link(rel='stylesheet' href='/css/style.css')
+            link(rel='shortcut icon' type='img/png' href='/img/favicon.png')
+            link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+            title Natours | #{title}
+
+    
+
+    body 
+
+        //-Header区  为了间接代码，分区创建了各自的pug文档,然后再这个body里面引用
+        include _header
+
+        
+        //-内容区  可以使用extend方法,来使head和footer不变,content区变化
+        block content
+
+
+        //-脚部区
+
+        include _footer
+
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js')
+        script(defer src='/js/login.js')
+
+
+
+
+
+
+

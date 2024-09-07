@@ -1,0 +1,59 @@
+
+//-继承指定pug文档的内容
+extends base
+
+
+
+//-在那个文档中,有一个block叫content
+//-这里也同样设置一个block content
+//-那么当渲染这个页面的时候,会继承那个指定文档中除了block里面的内容
+//-block里面的内容会显示这个页面里面代码
+block content
+    main.main 
+        .card-container
+            
+            each tour in tours
+                .card
+                    .card__header
+                        .card__picture
+                            .card__picture-overlay &nbsp;
+                            img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+                        h3.heading-tertirary
+                            span=tour.name
+
+                    .card__details
+                        h4.card__sub-heading= `${tour.difficulty} ${tour.duration}-day tour`
+                        p.card__text= tour.summary
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-map-pin')
+                            span= tour.startLocation.description
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-calendar')
+                            span= tour.startDates[0].toLocaleString('en-us',{month:'long',year:'numeric'})
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-flag')
+                            span= `${tour.locations.length} stops`
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-user')
+                            span= `${tour.maxGroupSize} people`
+
+                    .card__footer
+                        p
+                            span.card__footer-value= `$ ${tour.price}`
+                            //-下面这个竖线是PUG的两个标签中的空格,竖线后面得加空格
+                            | 
+                            span.card__footer-text per person
+                        p.card__ratings
+                            span.card__footer-value= tour.ratingsAverage
+                            | 
+                            span.card__footer-text= `rating (${tour.ratingsQuantity})`
+                        a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details
+
+
+
+
+
