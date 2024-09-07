@@ -14,9 +14,6 @@ module.exports = class Email {
 
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
-      //如果需要测试这里，把下面注释掉,只使用这部分就行了
-      //用mailsac.com来注册假的邮箱
-      //这里是给真实的邮箱发送相对应的邮件  sendinblue密保：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
       return nodemailer.createTransport({
         service: 'SendinBlue',
 
@@ -44,7 +41,7 @@ module.exports = class Email {
         firstName: this.firstName,
         url: this.url,
         subject: subject,
-      },
+      }
     );
 
     const mailOptions = {
